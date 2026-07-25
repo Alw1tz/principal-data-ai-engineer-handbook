@@ -1,3 +1,8 @@
+{{METADATA}}
+
+<!-- BREADCRUMB:START -->
+<!-- BREADCRUMB:END -->
+
 # {{TITLE}}
 
 # Overview
@@ -27,3 +32,6 @@ _TODO_
 # Learnings
 
 _TODO_
+
+<!-- RELATED:START -->
+<!-- RELATED:END -->

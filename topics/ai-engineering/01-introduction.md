@@ -1,3 +1,11 @@
+<!-- tags: ai-engineering -->
+<!-- status: not-started -->
+<!-- updated: 2026-07-24 -->
+
+<!-- BREADCRUMB:START -->
+[Home](../../README.md) / [Topics](../README.md) / [AI Engineering](README.md) / AI Engineering - Introduction
+<!-- BREADCRUMB:END -->
+
 # AI Engineering - Introduction
 
 # Overview
@@ -87,3 +95,7 @@ _TODO_
 # Checklist
 
 _TODO_
+
+<!-- RELATED:START -->
+_No related pages yet — add shared tags to connect this page to others._
+<!-- RELATED:END -->

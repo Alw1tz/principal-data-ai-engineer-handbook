@@ -42,13 +42,25 @@ assets/      Images, diagrams, architecture exports, mermaid sources, PDFs.
 - [RESOURCES.md](RESOURCES.md) — curated external links
 - [PROJECTS.md](PROJECTS.md) — status tracker for everything in `projects/`
 - [INTERVIEW_TRACKER.md](INTERVIEW_TRACKER.md) — interview prep tracker (incl. Salesforce)
+- [TAGS.md](TAGS.md) — every tag in use, with links to every page carrying it
 - [CHANGELOG.md](CHANGELOG.md) — notable structural/tooling changes
 - [CONTRIBUTING.md](CONTRIBUTING.md) — conventions for adding new content
+
+## Documentation system
+
+Every content page (chapter, lab, project, interview question) carries three HTML-comment metadata lines (`tags`, `status`, `updated`) — invisible when rendered on GitHub, machine-readable by everything below. That one mechanism drives:
+
+- **Tags & cross-references** — pages sharing a tag auto-link each other in a "Related" section. New pages are auto-tagged with their parent topic/lab slug; add more with `--tags`. Full tag index: [TAGS.md](TAGS.md).
+- **Breadcrumbs** — `Home / Topics / Spark / Shuffle Internals`, computed from the page's actual location, not hand-maintained.
+- **Chapter completion / reading progress** — `status` is `not-started` / `in-progress` / `complete`. Every directory listing shows it as ⬜/🟡/✅, [PROGRESS.md](PROGRESS.md) rolls it up per topic ("3/6 chapters complete"), and each topic's own README shows the same line.
+- **Automatic tables of contents** — every index page (root, topic, lab, prompt, project) lists its actual current contents, rebuilt from disk.
+
+Nothing here is hand-maintained — running `python3 scripts/build.py` after any change regenerates all of it and fails loudly (via `check_links.py`) if something's broken.
 
 ## Adding content
 
 ```bash
-# new chapter under an existing topic
+# new chapter under an existing topic (auto-tagged with the topic slug)
 python3 scripts/new_chapter.py spark shuffle-internals --title "Shuffle Internals"
 
 # new hands-on lab
@@ -60,14 +72,18 @@ python3 scripts/new_interview_page.py design-a-rate-limiter --title "Design a Ra
 # new project placeholder
 python3 scripts/new_project.py real-time-feature-store --title "Real-Time Feature Store"
 
-# after adding/removing anything under topics/, projects/, prompts/, labs/:
-python3 scripts/generate_toc.py
+# ... fill in the sections, then:
+python3 scripts/mark_complete.py topics/spark/02-shuffle-internals.md
 
-# before committing:
-python3 scripts/check_links.py
+# log a study session
+python3 scripts/log_study.py spark 2.5 --notes "Read chapter 1, did the AWS lab"
+
+# after touching any page — rebuilds TOC, breadcrumbs, cross-refs, tags index,
+# progress, and validates links, all in one command:
+python3 scripts/build.py
 ```
 
-All scripts are stdlib-only Python — no venv or dependencies needed.
+All scripts are stdlib-only Python — no venv or dependencies needed. Full reference: [scripts/README.md](scripts/README.md).
 
 ## Table of Contents
 

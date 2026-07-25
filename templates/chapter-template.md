@@ -1,3 +1,8 @@
+{{METADATA}}
+
+<!-- BREADCRUMB:START -->
+<!-- BREADCRUMB:END -->
+
 # {{TITLE}}
 
 # Overview
@@ -87,3 +92,6 @@ _TODO_
 # Checklist
 
 _TODO_
+
+<!-- RELATED:START -->
+<!-- RELATED:END -->

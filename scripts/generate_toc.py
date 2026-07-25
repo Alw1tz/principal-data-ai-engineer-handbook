@@ -6,9 +6,9 @@ pair gets its listing rebuilt from what's actually on disk:
 
   - README.md (root)                        -> one level: topics/projects/prompts/labs
   - projects/README.md                       -> project subdirectories
-  - topics/<topic>/README.md                 -> that topic's numbered chapters
-  - topics/mock-interviews/questions/README.md -> numbered interview-question pages
-  - labs/<lab-dir>/README.md                 -> that lab dir's numbered labs
+  - topics/<topic>/README.md                 -> that topic's numbered chapters (with status emoji)
+  - topics/mock-interviews/questions/README.md -> numbered interview-question pages (with status emoji)
+  - labs/<lab-dir>/README.md                 -> that lab dir's numbered labs (with status emoji)
   - prompts/<prompt-dir>/README.md           -> that dir's free-form prompt files
 
 This is the single source of truth for "what pages exist" — never hand-edit
@@ -19,30 +19,10 @@ Usage:
 """
 from pathlib import Path
 
-from _lib import ROOT
+from _lib import ROOT, STATUS_EMOJI, inject, parse_metadata, title_from_file
 
 START = "<!-- TOC:START -->"
 END = "<!-- TOC:END -->"
-
-
-def inject(path: Path, body: str) -> bool:
-    content = path.read_text()
-    if START not in content or END not in content:
-        raise SystemExit(f"{path.relative_to(ROOT)} is missing {START}/{END} markers")
-    before, rest = content.split(START, 1)
-    _, after = rest.split(END, 1)
-    new_content = f"{before}{START}\n{body}\n{END}{after}"
-    if new_content == content:
-        return False
-    path.write_text(new_content)
-    return True
-
-
-def title_from_file(md_path: Path) -> str:
-    for line in md_path.read_text().splitlines():
-        if line.startswith("# "):
-            return line[2:].strip()
-    return md_path.stem.replace("-", " ").title()
 
 
 def title_from_readme(dir_path: Path) -> str:
@@ -54,7 +34,11 @@ def numbered_pages_list(dir_path: Path, empty_msg: str) -> str:
     pages = sorted(dir_path.glob("[0-9][0-9]-*.md"))
     if not pages:
         return f"_{empty_msg}_"
-    return "\n".join(f"- [{title_from_file(p)}]({p.name})" for p in pages)
+    lines = []
+    for p in pages:
+        emoji = STATUS_EMOJI[parse_metadata(p)["status"]]
+        lines.append(f"- {emoji} [{title_from_file(p)}]({p.name})")
+    return "\n".join(lines)
 
 
 def free_form_pages_list(dir_path: Path) -> str:
@@ -68,7 +52,12 @@ def subdirs_list(dir_path: Path) -> str:
     subs = sorted(p for p in dir_path.iterdir() if p.is_dir())
     if not subs:
         return "_Nothing yet._"
-    return "\n".join(f"- [{title_from_readme(sub)}]({sub.name}/README.md)" for sub in subs)
+    lines = []
+    for sub in subs:
+        readme = sub / "README.md"
+        emoji = f"{STATUS_EMOJI[parse_metadata(readme)['status']]} " if readme.exists() else ""
+        lines.append(f"- {emoji}[{title_from_readme(sub)}]({sub.name}/README.md)")
+    return "\n".join(lines)
 
 
 def root_toc() -> str:
@@ -87,7 +76,7 @@ def main() -> None:
     changed = []
 
     def maybe(path: Path, body: str) -> None:
-        if path.exists() and inject(path, body):
+        if path.exists() and inject(path, START, END, body):
             changed.append(str(path.relative_to(ROOT)))
 
     maybe(ROOT / "README.md", root_toc())

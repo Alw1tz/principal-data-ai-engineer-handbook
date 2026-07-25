@@ -1,3 +1,11 @@
+<!-- tags: production-projects -->
+<!-- status: not-started -->
+<!-- updated: 2026-07-24 -->
+
+<!-- BREADCRUMB:START -->
+[Home](../../README.md) / [Topics](../README.md) / [Production Projects](README.md) / Production Projects - Introduction
+<!-- BREADCRUMB:END -->
+
 # Production Projects - Introduction
 
 # Overview
@@ -87,3 +95,7 @@ _TODO_
 # Checklist
 
 _TODO_
+
+<!-- RELATED:START -->
+_No related pages yet — add shared tags to connect this page to others._
+<!-- RELATED:END -->

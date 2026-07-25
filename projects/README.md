@@ -13,13 +13,13 @@ python3 scripts/new_project.py <slug> --title "Project Title"
 Then add a row for it in `../PROJECTS.md`.
 
 <!-- TOC:START -->
-- [Agentic Data Platform](agentic-data-platform/README.md)
-- [AI SQL Assistant](ai-sql-assistant/README.md)
-- [Data Catalog](data-catalog/README.md)
-- [Data Lineage Platform](data-lineage-platform/README.md)
-- [Data Quality Platform](data-quality-platform/README.md)
-- [Knowledge Graph](knowledge-graph/README.md)
-- [MCP Server](mcp-server/README.md)
-- [Metadata Platform](metadata-platform/README.md)
-- [Streaming Platform](streaming-platform/README.md)
+- ⬜ [Agentic Data Platform](agentic-data-platform/README.md)
+- ⬜ [AI SQL Assistant](ai-sql-assistant/README.md)
+- ⬜ [Data Catalog](data-catalog/README.md)
+- ⬜ [Data Lineage Platform](data-lineage-platform/README.md)
+- ⬜ [Data Quality Platform](data-quality-platform/README.md)
+- ⬜ [Knowledge Graph](knowledge-graph/README.md)
+- ⬜ [MCP Server](mcp-server/README.md)
+- ⬜ [Metadata Platform](metadata-platform/README.md)
+- ⬜ [Streaming Platform](streaming-platform/README.md)
 <!-- TOC:END -->

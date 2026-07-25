@@ -1,3 +1,11 @@
+<!-- tags: kubernetes -->
+<!-- status: not-started -->
+<!-- updated: 2026-07-24 -->
+
+<!-- BREADCRUMB:START -->
+[Home](../../README.md) / [Topics](../README.md) / [Kubernetes](README.md) / Kubernetes - Introduction
+<!-- BREADCRUMB:END -->
+
 # Kubernetes - Introduction
 
 # Overview
@@ -87,3 +95,7 @@ _TODO_
 # Checklist
 
 _TODO_
+
+<!-- RELATED:START -->
+_No related pages yet — add shared tags to connect this page to others._
+<!-- RELATED:END -->

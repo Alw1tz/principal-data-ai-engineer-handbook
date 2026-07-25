@@ -1,3 +1,11 @@
+<!-- tags: agentic-data-platform -->
+<!-- status: not-started -->
+<!-- updated: 2026-07-24 -->
+
+<!-- BREADCRUMB:START -->
+[Home](../../README.md) / [Projects](../README.md) / Agentic Data Platform
+<!-- BREADCRUMB:END -->
+
 # Agentic Data Platform
 
 # Overview
@@ -27,3 +35,7 @@ _TODO_
 # Learnings
 
 _TODO_
+
+<!-- RELATED:START -->
+_No related pages yet — add shared tags to connect this page to others._
+<!-- RELATED:END -->

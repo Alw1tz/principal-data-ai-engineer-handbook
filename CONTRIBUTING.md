@@ -17,6 +17,8 @@ If the topic doesn't exist yet, add it to `topics/` with a `README.md` (see any 
 - Don't skip sections — if one genuinely doesn't apply, write one line saying why instead of deleting the heading. Consistency across chapters is the entire value of the template.
 - **Senior Engineer Notes** vs **Principal Engineer Notes**: the first is "what you need to know to do the job well," the second is "what you need to know to make the call when the textbook answer doesn't fit" — tradeoffs, org-level consequences, when to break the rule.
 - **AWS Lab** / **Snowflake Lab**: link out to `labs/aws/` or `labs/snowflake/` rather than inlining a full lab here — keep the chapter narrative, the lab hands-on.
+- **Tags**: the topic slug is added automatically. Add a few more (`--tags` at creation time, or edit the `<!-- tags: -->` line directly) for anything that meaningfully connects to another topic — e.g. tag a Kafka chapter `streaming` if there's a Flink chapter also tagged `streaming`. Don't over-tag; a page with 10 tags cross-references everything and therefore nothing.
+- **Status**: leave as `not-started` while scaffolding. Set to `in-progress` once you start writing, `complete` via `python3 scripts/mark_complete.py <path>` once it meets the bar in [ROADMAP.md](ROADMAP.md)'s "What done means" section.
 
 ## Adding a lab
 
@@ -45,9 +47,10 @@ Goes into `topics/mock-interviews/questions/`, not directly into `topics/mock-in
 ## Before committing
 
 ```bash
-python3 scripts/generate_toc.py     # if you added/removed topics, projects, prompts, or labs
-python3 scripts/check_links.py      # catch broken relative links
+python3 scripts/build.py    # regenerates TOC/breadcrumbs/cross-refs/tags/progress, then validates links
 ```
+
+Run this after touching any page — it's the one command, not several to remember.
 
 ## Style
 

@@ -1,3 +1,8 @@
+{{METADATA}}
+
+<!-- BREADCRUMB:START -->
+<!-- BREADCRUMB:END -->
+
 # {{TITLE}}
 
 # Objective
@@ -35,3 +40,6 @@ _TODO_
 # Notes
 
 _TODO_
+
+<!-- RELATED:START -->
+<!-- RELATED:END -->

@@ -1,3 +1,8 @@
+{{METADATA}}
+
+<!-- BREADCRUMB:START -->
+<!-- BREADCRUMB:END -->
+
 # {{TITLE}}
 
 # Question
@@ -31,3 +36,6 @@ _TODO_
 # Sources
 
 _TODO_
+
+<!-- RELATED:START -->
+<!-- RELATED:END -->

@@ -3,12 +3,13 @@
 templates/project-template.md.
 
 Usage:
-    python3 scripts/new_project.py <slug> [--title "Project Title"]
+    python3 scripts/new_project.py <slug> [--title "Project Title"] [--tags tag1,tag2]
 
 Example:
-    python3 scripts/new_project.py real-time-feature-store --title "Real-Time Feature Store"
+    python3 scripts/new_project.py real-time-feature-store --title "Real-Time Feature Store" --tags spark,streaming
 
-After running this, add a status row for the project in PROJECTS.md.
+After running this: add a status row for the project in PROJECTS.md, and run
+scripts/build.py to wire in breadcrumbs/TOC/cross-refs.
 """
 import argparse
 
@@ -19,6 +20,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("slug", help="Slug for the new project")
     parser.add_argument("--title", help="Project title (defaults to a title-cased slug)")
+    parser.add_argument("--tags", default="", help="Comma-separated tags")
     args = parser.parse_args()
 
     slug = slugify(args.slug)
@@ -28,10 +30,11 @@ def main() -> None:
         raise SystemExit(f"{target} already exists")
 
     title = args.title or args.slug.replace("-", " ").title()
+    tags = ["projects"] + [t.strip() for t in args.tags.split(",") if t.strip()]
     target_dir.mkdir(parents=True, exist_ok=True)
-    target.write_text(render_template(ROOT / "templates" / "project-template.md", title))
+    target.write_text(render_template(ROOT / "templates" / "project-template.md", title, tags))
     print(f"Created {target.relative_to(ROOT)}")
-    print("Don't forget to add a status row for it in PROJECTS.md")
+    print("Don't forget to: add a status row for it in PROJECTS.md, then run scripts/build.py")
 
 
 if __name__ == "__main__":
