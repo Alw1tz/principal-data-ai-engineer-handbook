@@ -22,7 +22,8 @@ All four accept `--tags tag1,tag2` for extra tags beyond the automatic default.
 | `generate_cross_references.py` | The "Related" section on every content page, from shared tags |
 | `generate_tags_index.py` | `TAGS.md` |
 | `update_progress.py` | `PROGRESS.md` and each topic's "chapters complete" line |
-| `build.py` | **Runs all of the above in the right order, then `check_links.py`.** This is the one command to run after touching any page. |
+| `generate_readme_stats.py` | The stats line at the top of `README.md` (topic/page/completion/tag counts) |
+| `build.py` | **Runs all of the above in the right order, then `check_links.py`.** This is the one command to run after touching any page — and exactly what [CI](../.github/workflows/ci.yml) runs on every push. |
 
 All are idempotent — safe to run repeatedly, they only write a file if its content actually changed.
 

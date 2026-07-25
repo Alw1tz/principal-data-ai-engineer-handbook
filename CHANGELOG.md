@@ -2,6 +2,32 @@
 
 Notable changes to the handbook's structure/tooling (not content — chapters have no content yet). Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 2026-07-24 — Production-ready polish
+
+Everything below is backed by something real running, not decoration — every badge, diagram, and template change ties to an actual file/workflow that exists in this commit.
+
+### Added
+
+- **`LICENSE`** (MIT) — was missing entirely; a public repo with no license technically reserves all rights, which isn't the intent here.
+- **`.github/workflows/ci.yml`** — GitHub Actions CI: runs `scripts/build.py` on every push/PR (regenerates all derived content, validates links), then fails the build if that produced any uncommitted diff. This means it's no longer possible to merge a stale TOC, a broken link, or a page that's out of sync with its own tags/breadcrumbs — the badge in the README reports this truthfully because it's wired to a real check.
+- **`.github/ISSUE_TEMPLATE/`** (content suggestion, tooling bug) and **`.github/PULL_REQUEST_TEMPLATE.md`** — scoped to what this repo actually is (a personal handbook taking outside suggestions), not a generic open-source community kit that would overstate what it is.
+- **`.editorconfig`** — consistent indentation/line-ending rules across the Python scripts and markdown content.
+- **`scripts/generate_readme_stats.py`** — real, computed counts (topics/pages/completion-%/tags/etc.) injected into the README, wired into `scripts/build.py`. Not hand-typed numbers that go stale.
+- **Mermaid architecture diagram** in the README — the actual `build.py` pipeline (`ensure_frontmatter → breadcrumbs → toc → cross-refs → tags → progress → stats → check_links`), not a generic/decorative system diagram. GitHub renders Mermaid natively, no extra tooling needed.
+
+### Changed
+
+- **README** — badges (CI status, license, tooling, docs style — each backed by a real file/workflow, not aspirational), a directory table with one icon per top-level folder, and the giant flat table of contents moved inside a collapsible `<details>` block so the page doesn't read as a wall of links before you've even seen what the project is.
+- **Fixed a real template bug**: `templates/*.md`'s auto-generated "Related" section (added last session) had no heading above it — the cross-reference links just floated after the Checklist section's `_TODO_` with no label. Added `# Related` (`# Related Pages` for interview questions, to avoid clashing with the existing manual "Related Chapters" section there). Backfilled onto all 38 existing pages via an extended `ensure_frontmatter.py`, which now also detects and fixes missing headings above existing marker blocks — not just missing blocks entirely.
+- **Fixed a tagging inconsistency**: `new_project.py` was auto-tagging every new project with a generic shared `"projects"` tag, while the 9 pre-existing projects (backfilled last session) each got their own slug as the tag. A shared tag would have cross-referenced every project against every other one regardless of actual relevance. `new_project.py` now tags with the project's own slug, matching how topics/labs already worked.
+- **`ROADMAP.md`** already lost its redundant status checkboxes last session; this pass didn't touch that further — mentioned here only because it's part of why `PROGRESS.md` could be trusted as the single source for the new stats line.
+
+### Explicitly not added (and why)
+
+- **No coverage/build-artifact badges** — there's no code being compiled or tested in the traditional sense; a badge implying otherwise would be decorative, not real.
+- **No CODE_OF_CONDUCT.md / community-scale contribution process** — this is a personal handbook accepting suggestions, not a project soliciting a contributor base; a full open-source governance kit would misrepresent what it is.
+- **No in-page section TOC, no markdown linter** — both already considered and rejected last session (GitHub's native per-file outline covers the first; a JS-based linter would break the stdlib-only-Python tooling constraint for the second).
+
 ## 2026-07-24 — Professional documentation system
 
 Converted the handbook from "well-organized markdown" into a documentation system with real machine-readable structure. Everything below is driven by one new mechanism: three HTML-comment metadata lines (`tags`, `status`, `updated`) at the top of every content page — invisible on GitHub, read/written by scripts.

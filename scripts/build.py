@@ -21,6 +21,7 @@ STEPS = [
     "generate_cross_references.py",
     "generate_tags_index.py",
     "update_progress.py",
+    "generate_readme_stats.py",
     "check_links.py",
 ]
 

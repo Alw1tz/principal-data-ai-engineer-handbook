@@ -50,7 +50,7 @@ Goes into `topics/mock-interviews/questions/`, not directly into `topics/mock-in
 python3 scripts/build.py    # regenerates TOC/breadcrumbs/cross-refs/tags/progress, then validates links
 ```
 
-Run this after touching any page — it's the one command, not several to remember.
+Run this after touching any page — it's the one command, not several to remember. [CI](.github/workflows/ci.yml) runs the exact same command on every push and fails if it produces changes you didn't commit, so there's no way to accidentally merge a stale TOC/breadcrumb/tag index.
 
 ## Style
 

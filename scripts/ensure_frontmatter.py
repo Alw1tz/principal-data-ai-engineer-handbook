@@ -44,7 +44,16 @@ def main() -> None:
             text = "".join(lines)
 
         if "<!-- RELATED:START -->" not in text:
-            text = text.rstrip("\n") + "\n\n" + RELATED_BLOCK
+            text = text.rstrip("\n") + "\n\n# Related\n\n" + RELATED_BLOCK
+        else:
+            # Older pages may have the markers without a heading above them.
+            lines = text.splitlines()
+            idx = next(i for i, line in enumerate(lines) if "<!-- RELATED:START -->" in line)
+            preceding = next((l for l in reversed(lines[:idx]) if l.strip()), "")
+            if not preceding.startswith("#"):
+                lines.insert(idx, "")
+                lines.insert(idx, "# Related")
+                text = "\n".join(lines) + "\n"
 
         if text != original:
             page.write_text(text)

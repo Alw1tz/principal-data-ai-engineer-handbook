@@ -1,42 +1,43 @@
-# Principal Data & AI Engineer Handbook
+<div align="center">
 
-A long-term, continuously growing engineering handbook — Data Engineering, AI Engineering, distributed systems, platform/infra, and career growth toward a Principal-level role. Structured like production documentation (Stripe/AWS/Google-style): every topic follows the same template, so once you know the shape of one chapter you know all of them.
+# 📚 Principal Data & AI Engineer Handbook
 
-This is not a notes dump. Every chapter in `topics/` is meant to eventually answer, for its subject: how it works internally, how it's run in production, what breaks, what a senior engineer knows that a mid-level one doesn't, and what a principal engineer knows that a senior one doesn't.
+**A long-term, continuously growing engineering handbook** — Data Engineering, AI Engineering, distributed systems, platform/infra, and career growth toward a Principal-level role.
+
+[![CI](https://github.com/Alw1tz/principal-data-ai-engineer-handbook/actions/workflows/ci.yml/badge.svg)](https://github.com/Alw1tz/principal-data-ai-engineer-handbook/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/github/license/Alw1tz/principal-data-ai-engineer-handbook)](LICENSE)
+[![Python](https://img.shields.io/badge/tooling-python%203.12%2B-3776AB?logo=python&logoColor=white)](scripts/README.md)
+[![Docs style: Google](https://img.shields.io/badge/docs%20style-Google-4285F4)](CONTRIBUTING.md#style)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
+
+<!-- STATS:START -->
+**29** topics · **38** pages · **0/38** complete (0%) · **8** lab categories · **9** projects · **0** prompts · **38** tags
+<!-- STATS:END -->
+
+</div>
+
+---
+
+Structured like production documentation (Stripe/AWS/Google-style): every topic follows the same template, so once you know the shape of one chapter you know all of them. This is not a notes dump — every chapter in `topics/` is meant to eventually answer, for its subject: how it works internally, how it's run in production, what breaks, what a senior engineer knows that a mid-level one doesn't, and what a principal engineer knows that a senior one doesn't.
 
 ## How it's organized
 
-```
-topics/      One directory per subject (Spark, AWS, LLMs, System Design, Leadership, ...).
-             Each chapter follows templates/chapter-template.md — identical sections
-             everywhere, so navigation and depth are predictable.
-
-projects/    Design-doc placeholders for larger production-style builds
-             (Metadata Platform, Streaming Platform, MCP Server, ...). A project
-             that gets built for real gets its own repo under ~/Documents/dev/,
-             linked back from its page here.
-
-prompts/     Reusable prompts — Claude, ChatGPT, interview prep, architecture,
-             coding, system design — one .md file per prompt.
-
-labs/        Standalone, runnable hands-on exercises (separate from the
-             narrative chapters), grouped by tool.
-
-templates/   The canonical templates (chapter, lab, project, interview
-             question) that everything else is generated from.
-
-scripts/     Automation: scaffold new chapters/labs/projects/interview pages,
-             regenerate every directory's table of contents, check for
-             broken relative links. See scripts/README.md for the full list.
-
-assets/      Images, diagrams, architecture exports, mermaid sources, PDFs.
-```
+| | Directory | What's in it |
+|---|---|---|
+| 📚 | [`topics/`](topics/README.md) | One directory per subject (Spark, AWS, LLMs, System Design, Leadership, ...). Every chapter follows [`templates/chapter-template.md`](templates/chapter-template.md) — identical sections everywhere. |
+| 🏗️ | [`projects/`](projects/README.md) | Design-doc placeholders for larger production-style builds. A project that gets built for real gets its own repo, linked back from its page here. |
+| 💬 | [`prompts/`](prompts/README.md) | Reusable prompts — Claude, ChatGPT, interview prep, architecture, coding, system design. |
+| 🧪 | [`labs/`](labs/README.md) | Standalone, runnable hands-on exercises, grouped by tool. |
+| 🧩 | [`templates/`](templates/README.md) | The canonical page shapes everything above is generated from. |
+| ⚙️ | [`scripts/`](scripts/README.md) | Automation — scaffolding, table of contents, breadcrumbs, cross-references, tags, progress tracking, link validation. |
+| 🖼️ | [`assets/`](assets/README.md) | Images, diagrams, architecture exports, mermaid sources, PDFs. |
+| 🔧 | [`.github/`](.github/workflows/ci.yml) | CI (validates every push), issue/PR templates. |
 
 ## Root documents
 
 - [ROADMAP.md](ROADMAP.md) — phased plan of what gets written, in what order
-- [STUDY_PLAN.md](STUDY_PLAN.md) — weekly study cadence
-- [PROGRESS.md](PROGRESS.md) — per-topic completion tracker
+- [STUDY_PLAN.md](STUDY_PLAN.md) — weekly cadence + session log
+- [PROGRESS.md](PROGRESS.md) — per-topic completion tracker (auto-computed)
 - [BOOKS.md](BOOKS.md) — reading list
 - [PAPERS.md](PAPERS.md) — research papers queue
 - [RESOURCES.md](RESOURCES.md) — curated external links
@@ -45,17 +46,38 @@ assets/      Images, diagrams, architecture exports, mermaid sources, PDFs.
 - [TAGS.md](TAGS.md) — every tag in use, with links to every page carrying it
 - [CHANGELOG.md](CHANGELOG.md) — notable structural/tooling changes
 - [CONTRIBUTING.md](CONTRIBUTING.md) — conventions for adding new content
+- [LICENSE](LICENSE) — MIT
 
-## Documentation system
+## How the documentation system works
 
-Every content page (chapter, lab, project, interview question) carries three HTML-comment metadata lines (`tags`, `status`, `updated`) — invisible when rendered on GitHub, machine-readable by everything below. That one mechanism drives:
+Every content page (chapter, lab, project, interview question) carries three HTML-comment metadata lines (`tags`, `status`, `updated`) — invisible when rendered on GitHub, machine-readable by every script in `scripts/`. That one mechanism drives everything else:
 
-- **Tags & cross-references** — pages sharing a tag auto-link each other in a "Related" section. New pages are auto-tagged with their parent topic/lab slug; add more with `--tags`. Full tag index: [TAGS.md](TAGS.md).
-- **Breadcrumbs** — `Home / Topics / Spark / Shuffle Internals`, computed from the page's actual location, not hand-maintained.
-- **Chapter completion / reading progress** — `status` is `not-started` / `in-progress` / `complete`. Every directory listing shows it as ⬜/🟡/✅, [PROGRESS.md](PROGRESS.md) rolls it up per topic ("3/6 chapters complete"), and each topic's own README shows the same line.
-- **Automatic tables of contents** — every index page (root, topic, lab, prompt, project) lists its actual current contents, rebuilt from disk.
+```mermaid
+flowchart LR
+    A["new_chapter.py / new_lab.py /<br/>new_project.py / new_interview_page.py"] --> B[ensure_frontmatter.py]
+    B --> C[generate_breadcrumbs.py]
+    C --> D[generate_toc.py]
+    D --> E[generate_cross_references.py]
+    E --> F[generate_tags_index.py]
+    F --> G[update_progress.py]
+    G --> H[generate_readme_stats.py]
+    H --> I{check_links.py}
+    I -- pass --> J[✅ commit]
+    I -- fail --> K[fix broken links]
+    K --> I
 
-Nothing here is hand-maintained — running `python3 scripts/build.py` after any change regenerates all of it and fails loudly (via `check_links.py`) if something's broken.
+    style A fill:#4285F4,color:#fff
+    style I fill:#F4B400,color:#000
+    style J fill:#34A853,color:#fff
+    style K fill:#EA4335,color:#fff
+```
+
+`python3 scripts/build.py` runs that whole pipeline in one command — it's the only thing you need to remember, and it's also exactly what [CI](.github/workflows/ci.yml) runs on every push, failing the build if generated content wasn't committed.
+
+- **Tags & cross-references** — pages sharing a tag auto-link each other in a "Related" section, ranked by shared-tag count. New pages are auto-tagged with their parent topic/lab slug.
+- **Breadcrumbs** — `Home / Topics / Spark / Shuffle Internals`, computed from the page's actual location.
+- **Chapter completion / reading progress** — `status` is `not-started` / `in-progress` / `complete`. Every listing shows ⬜/🟡/✅ inline; [PROGRESS.md](PROGRESS.md) rolls it up per topic.
+- **Automatic tables of contents** — every index page lists its actual current contents, rebuilt from disk, never hand-edited.
 
 ## Adding content
 
@@ -63,29 +85,25 @@ Nothing here is hand-maintained — running `python3 scripts/build.py` after any
 # new chapter under an existing topic (auto-tagged with the topic slug)
 python3 scripts/new_chapter.py spark shuffle-internals --title "Shuffle Internals"
 
-# new hands-on lab
+# new hands-on lab / interview question / project
 python3 scripts/new_lab.py snowflake time-travel-recovery --title "Time Travel Recovery"
-
-# new interview-question page
 python3 scripts/new_interview_page.py design-a-rate-limiter --title "Design a Rate Limiter"
-
-# new project placeholder
 python3 scripts/new_project.py real-time-feature-store --title "Real-Time Feature Store"
 
 # ... fill in the sections, then:
 python3 scripts/mark_complete.py topics/spark/02-shuffle-internals.md
-
-# log a study session
 python3 scripts/log_study.py spark 2.5 --notes "Read chapter 1, did the AWS lab"
 
-# after touching any page — rebuilds TOC, breadcrumbs, cross-refs, tags index,
-# progress, and validates links, all in one command:
+# after touching any page — the one command that regenerates and validates everything:
 python3 scripts/build.py
 ```
 
 All scripts are stdlib-only Python — no venv or dependencies needed. Full reference: [scripts/README.md](scripts/README.md).
 
-## Table of Contents
+## Browse everything
+
+<details>
+<summary><strong>Full table of contents</strong> — 4 sections, expand to browse</summary>
 
 <!-- TOC:START -->
 - **[Topics](topics/README.md)**
@@ -145,3 +163,5 @@ All scripts are stdlib-only Python — no venv or dependencies needed. Full refe
   - [Snowflake Labs](labs/snowflake/README.md)
   - [Spark Labs](labs/spark/README.md)
 <!-- TOC:END -->
+
+</details>

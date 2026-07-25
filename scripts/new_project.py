@@ -30,7 +30,10 @@ def main() -> None:
         raise SystemExit(f"{target} already exists")
 
     title = args.title or args.slug.replace("-", " ").title()
-    tags = ["projects"] + [t.strip() for t in args.tags.split(",") if t.strip()]
+    # Tag with the project's own slug (matches how topics/labs default-tag) —
+    # a shared generic "projects" tag would cross-reference every project
+    # against every other one regardless of whether they're actually related.
+    tags = [slug] + [t.strip() for t in args.tags.split(",") if t.strip()]
     target_dir.mkdir(parents=True, exist_ok=True)
     target.write_text(render_template(ROOT / "templates" / "project-template.md", title, tags))
     print(f"Created {target.relative_to(ROOT)}")

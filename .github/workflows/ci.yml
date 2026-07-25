@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate docs (build + links)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run the doc build (regenerates TOC/breadcrumbs/tags/cross-refs/progress, then checks links)
+        run: python3 scripts/build.py
+
+      - name: Fail if the build produced uncommitted changes
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::scripts/build.py changed generated content that wasn't committed."
+            echo "Run 'python3 scripts/build.py' locally and commit the result."
+            git diff --stat
+            exit 1
+          fi
