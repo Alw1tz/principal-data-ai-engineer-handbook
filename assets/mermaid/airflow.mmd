@@ -1,0 +1,12 @@
+graph TD
+    A[User] --> B[Airflow Web UI]
+    B --> C[Scheduler]
+    C --> D[Metadata Database]
+    D --> E[Worker Nodes]
+    E --> F[Task Execution]
+    F --> G[Task Logs]
+    F --> H[Task Results]
+    C --> I[Trigger DAGs]
+    I --> J[DAG Files]
+    J --> K[Operators]
+    K --> L[Tasks]

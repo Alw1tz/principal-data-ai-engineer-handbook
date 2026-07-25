@@ -1,0 +1,94 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    { "id": "topicSlug", "type": "promptString", "description": "Topic slug (e.g. spark) — see topics/README.md" },
+    { "id": "chapterSlug", "type": "promptString", "description": "New chapter slug (e.g. shuffle-internals)" },
+    { "id": "chapterTitle", "type": "promptString", "description": "Chapter title (e.g. Shuffle Internals)" },
+    { "id": "labDir", "type": "promptString", "description": "Lab directory slug (e.g. snowflake) — see labs/README.md" },
+    { "id": "labSlug", "type": "promptString", "description": "New lab slug (e.g. time-travel-recovery)" },
+    { "id": "labTitle", "type": "promptString", "description": "Lab title (e.g. Time Travel Recovery)" },
+    { "id": "projectSlug", "type": "promptString", "description": "New project slug (e.g. real-time-feature-store)" },
+    { "id": "projectTitle", "type": "promptString", "description": "Project title (e.g. Real-Time Feature Store)" },
+    { "id": "questionSlug", "type": "promptString", "description": "New interview-question slug (e.g. design-a-rate-limiter)" },
+    { "id": "questionTitle", "type": "promptString", "description": "Question title (e.g. Design a Rate Limiter)" },
+    { "id": "extraTags", "type": "promptString", "description": "Extra comma-separated tags (optional, blank is fine)", "default": "" },
+    { "id": "studyTopic", "type": "promptString", "description": "Topic slug this session covered" },
+    { "id": "studyHours", "type": "promptString", "description": "Hours spent" },
+    { "id": "studyNotes", "type": "promptString", "description": "Notes (optional)", "default": "" }
+  ],
+  "tasks": [
+    {
+      "label": "Build (regenerate everything + validate links)",
+      "type": "shell",
+      "command": "python3 scripts/build.py",
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Check links only",
+      "type": "shell",
+      "command": "python3 scripts/check_links.py",
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "New: Chapter",
+      "type": "shell",
+      "command": "python3 scripts/new_chapter.py ${input:topicSlug} ${input:chapterSlug} --title \"${input:chapterTitle}\" --tags \"${input:extraTags}\"",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "New: Lab",
+      "type": "shell",
+      "command": "python3 scripts/new_lab.py ${input:labDir} ${input:labSlug} --title \"${input:labTitle}\" --tags \"${input:extraTags}\"",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "New: Project",
+      "type": "shell",
+      "command": "python3 scripts/new_project.py ${input:projectSlug} --title \"${input:projectTitle}\" --tags \"${input:extraTags}\"",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "New: Interview Question",
+      "type": "shell",
+      "command": "python3 scripts/new_interview_page.py ${input:questionSlug} --title \"${input:questionTitle}\" --tags \"${input:extraTags}\"",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Mark current file complete",
+      "type": "shell",
+      "command": "python3 scripts/mark_complete.py \"${relativeFile}\"",
+      "detail": "Sets status: complete on the file you currently have open, then refreshes PROGRESS.md",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Mark current file in-progress",
+      "type": "shell",
+      "command": "python3 scripts/mark_complete.py \"${relativeFile}\" --status in-progress",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Log study session",
+      "type": "shell",
+      "command": "python3 scripts/log_study.py ${input:studyTopic} ${input:studyHours} --notes \"${input:studyNotes}\"",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backfill metadata/breadcrumbs/related (ensure_frontmatter)",
+      "type": "shell",
+      "command": "python3 scripts/ensure_frontmatter.py",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    }
+  ]
+}

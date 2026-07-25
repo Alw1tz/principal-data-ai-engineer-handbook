@@ -1,0 +1,9 @@
+graph TD
+    A[Data Source] --> B[Spark Driver]
+    B --> C[Cluster Manager]
+    C --> D[Spark Executors]
+    D --> E[Storage Layer]
+    D --> F[Shuffle Operations]
+    B --> G[Spark Applications]
+    G --> H[Resilient Distributed Datasets (RDDs)]
+    G --> I[DataFrames/Datasets]

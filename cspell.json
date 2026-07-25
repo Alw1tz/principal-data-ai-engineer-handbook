@@ -1,0 +1,56 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "dictionaries": ["software-terms", "python", "bash", "typescript", "node"],
+  "ignorePaths": [
+    "**/__pycache__/**",
+    ".git/**"
+  ],
+  "words": [
+    // ---- Data engineering tools (match topics/ slugs) ----
+    "Airflow", "Kafka", "Snowflake", "dbt", "Spark", "PySpark", "Lakehouse",
+    "Databricks", "Presto", "Trino", "Flink", "Hudi", "Iceberg", "Delta",
+    "Confluent", "Zookeeper", "Redshift", "BigQuery", "Fivetran", "Airbyte",
+
+    // ---- AWS ----
+    "EC2", "S3", "IAM", "VPC", "Lambda", "DynamoDB", "Glue", "Athena",
+    "Kinesis", "Cloudwatch", "Cloudtrail", "Sagemaker", "EMR", "ECS", "EKS",
+    "RDS", "Elasticache", "SNS", "SQS", "EFS", "EBS", "ALB", "ELB", "boto3",
+    "botocore",
+
+    // ---- AI / LLM engineering (match topics/ slugs) ----
+    "LLMs", "LangGraph", "LangChain", "LlamaIndex", "Ollama", "OpenAI",
+    "Anthropic", "MCP", "RAG", "finetuning", "finetune", "quantization",
+    "quantized", "embeddings", "embedder", "tokenizer", "tokenization",
+    "autoregressive", "transformer", "transformers", "unsloth",
+    "huggingface", "langsmith", "Pinecone", "Weaviate", "Chroma", "Milvus",
+    "FAISS", "qwen", "Qwen",
+
+    // ---- Platform / infra (match topics/ slugs) ----
+    "Kubernetes", "kubectl", "kubeconfig", "Terraform", "Helm", "Ansible",
+    "namespace", "namespaces", "statefulset", "daemonset", "configmap",
+    "autoscaling", "autoscaler", "sharding", "resharding", "idempotent",
+    "idempotency", "backpressure", "checkpointing", "watermarking",
+
+    // ---- Formats / protocols ----
+    "Parquet", "protobuf", "gRPC", "OLAP", "OLTP", "jsonl", "avro",
+
+    // ---- Distributed systems ----
+    "Raft", "Paxos", "quorum", "leaderless",
+
+    // ---- Repo tooling (match scripts/README.md, this workspace's own config) ----
+    "frontmatter", "markdownlint", "cspell", "prettier", "prettierrc",
+    "prettierignore", "mermaid", "plantuml", "editorconfig", "jsonc",
+    "venv", "pyenv", "ruff", "pytest", "argparse", "docstring", "changelog",
+    "shields", "sqlite", "bcrypt", "gitkeep", "globbing", "slugify", "slugs",
+    "unindent", "walrus",
+
+    // ---- Interview / career ----
+    "leetcode", "whiteboarding",
+
+    // ---- Names used in this repo ----
+    "Alw1tz", "Almeida"
+  ],
+  "ignoreWords": [],
+  "flagWords": []
+}

@@ -1,0 +1,119 @@
+{
+  "Mermaid: flowchart": {
+    "scope": "markdown",
+    "prefix": "mermaid-flow",
+    "body": [
+      "```mermaid",
+      "flowchart ${1|LR,TD|}",
+      "    A[${2:Start}] --> B[${3:Step}]",
+      "    B --> C[${4:End}]",
+      "```"
+    ],
+    "description": "Mermaid flowchart block (renders natively on GitHub and in the VS Code preview)"
+  },
+
+  "Mermaid: sequence diagram": {
+    "scope": "markdown",
+    "prefix": "mermaid-seq",
+    "body": [
+      "```mermaid",
+      "sequenceDiagram",
+      "    participant ${1:Client}",
+      "    participant ${2:Service}",
+      "    ${1:Client}->>${2:Service}: ${3:request}",
+      "    ${2:Service}-->>${1:Client}: ${4:response}",
+      "```"
+    ],
+    "description": "Mermaid sequence diagram block"
+  },
+
+  "PlantUML: component diagram": {
+    "scope": "markdown",
+    "prefix": "plantuml-component",
+    "body": [
+      "```plantuml",
+      "@startuml",
+      "component \"${1:Service A}\" as A",
+      "component \"${2:Service B}\" as B",
+      "A --> B : ${3:calls}",
+      "@enduml",
+      "```",
+      "",
+      "<!-- GitHub doesn't render PlantUML inline like it does Mermaid — export",
+      "     this to assets/diagrams/ as PNG/SVG (jebbs.plantuml: \"Export Current",
+      "     Diagram\") and embed that image if this needs to show on GitHub. -->"
+    ],
+    "description": "PlantUML component diagram — with a reminder that GitHub won't render it inline"
+  },
+
+  "Handbook: metadata block": {
+    "scope": "markdown",
+    "prefix": "hb-metadata",
+    "body": [
+      "<!-- tags: ${1:topic-slug} -->",
+      "<!-- status: ${2|not-started,in-progress,complete|} -->",
+      "<!-- updated: ${3:CURRENT_YEAR}-${4:CURRENT_MONTH}-${5:CURRENT_DATE} -->"
+    ],
+    "description": "The 3-line metadata block every content page starts with. Prefer scripts/new_chapter.py etc. over hand-writing this."
+  },
+
+  "Handbook: breadcrumb markers": {
+    "scope": "markdown",
+    "prefix": "hb-breadcrumb",
+    "body": ["<!-- BREADCRUMB:START -->", "<!-- BREADCRUMB:END -->"],
+    "description": "Empty breadcrumb markers — run scripts/generate_breadcrumbs.py (or scripts/build.py) to fill them in"
+  },
+
+  "Handbook: related markers": {
+    "scope": "markdown",
+    "prefix": "hb-related",
+    "body": ["# Related", "", "<!-- RELATED:START -->", "<!-- RELATED:END -->"],
+    "description": "Empty Related-section markers — run scripts/generate_cross_references.py (or scripts/build.py) to fill them in"
+  },
+
+  "Collapsible details block": {
+    "scope": "markdown",
+    "prefix": "details",
+    "body": [
+      "<details>",
+      "<summary>${1:Click to expand}</summary>",
+      "",
+      "${2:content}",
+      "",
+      "</details>"
+    ],
+    "description": "GitHub-flavored collapsible section"
+  },
+
+  "Callout: note": {
+    "scope": "markdown",
+    "prefix": "callout-note",
+    "body": ["> [!NOTE]", "> ${1:text}"],
+    "description": "GitHub-flavored NOTE callout"
+  },
+
+  "Callout: warning": {
+    "scope": "markdown",
+    "prefix": "callout-warning",
+    "body": ["> [!WARNING]", "> ${1:text}"],
+    "description": "GitHub-flavored WARNING callout"
+  },
+
+  "Callout: tip": {
+    "scope": "markdown",
+    "prefix": "callout-tip",
+    "body": ["> [!TIP]", "> ${1:text}"],
+    "description": "GitHub-flavored TIP callout"
+  },
+
+  "Table: 3-column": {
+    "scope": "markdown",
+    "prefix": "table3",
+    "body": [
+      "| ${1:Column A} | ${2:Column B} | ${3:Column C} |",
+      "|---|---|---|",
+      "| ${4:} | ${5:} | ${6:} |"
+    ],
+    "description": "3-column markdown table skeleton"
+  }
+}

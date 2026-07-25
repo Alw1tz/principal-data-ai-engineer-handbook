@@ -1,0 +1,9 @@
+graph TD
+    A[Producer] --> B[Kafka Broker]
+    B --> C[Topic Partition]
+    C --> D[Consumer Group]
+    D --> E[Consumer]
+    B --> F[Zookeeper]
+    B --> G[Replica]
+    G --> H[Leader]
+    H --> I[Follower]

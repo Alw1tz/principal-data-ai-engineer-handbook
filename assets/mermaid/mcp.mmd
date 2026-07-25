@@ -1,0 +1,12 @@
+graph TD
+    A[Client] --> B[MCP Server]
+    B --> C[Tool Registry]
+    C --> D[Tools]
+    D --> E[API Endpoints]
+    B --> F[Message Broker]
+    F --> G[Protocol Layer]
+    G --> H[Messages]
+    H --> I[Requests]
+    H --> J[Responses]
+    B --> K[Authentication]
+    K --> L[Security Layer]

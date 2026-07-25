@@ -1,0 +1,13 @@
+graph TD
+    subgraph "Deployment Environment"
+        A[Node 1]
+        B[Node 2]
+        C[Node 3]
+        D[Database]
+        E[Load Balancer]
+    end
+
+    A --> E
+    B --> E
+    C --> E
+    E --> D

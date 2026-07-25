@@ -32,6 +32,7 @@ Structured like production documentation (Stripe/AWS/Google-style): every topic 
 | ⚙️ | [`scripts/`](scripts/README.md) | Automation — scaffolding, table of contents, breadcrumbs, cross-references, tags, progress tracking, link validation. |
 | 🖼️ | [`assets/`](assets/README.md) | Images, diagrams, architecture exports, mermaid sources, PDFs. |
 | 🔧 | [`.github/`](.github/workflows/ci.yml) | CI (validates every push), issue/PR templates. |
+| 🧠 | [`.vscode/`](.vscode/README.md) | Full editor setup — extensions, tasks wired to every script, debug configs, snippets, spell check, Mermaid/PlantUML preview. Open the repo in VS Code and it just works. |
 
 ## Root documents
 
@@ -98,7 +99,7 @@ python3 scripts/log_study.py spark 2.5 --notes "Read chapter 1, did the AWS lab"
 python3 scripts/build.py
 ```
 
-All scripts are stdlib-only Python — no venv or dependencies needed. Full reference: [scripts/README.md](scripts/README.md).
+All scripts are stdlib-only Python — no venv or dependencies needed. Full reference: [scripts/README.md](scripts/README.md). Using VS Code? Every command above is also a task with input prompts (Cmd/Ctrl+Shift+P → "Run Task") — see [`.vscode/README.md`](.vscode/README.md).
 
 ## Browse everything
 

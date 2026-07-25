@@ -2,6 +2,8 @@
 
 This is a personal handbook, but it's kept to the same bar as a shared team doc — mainly so future-you can trust it.
 
+**Editor**: open the repo root in VS Code and accept the recommended extensions — spell check, markdown linting, Mermaid/PlantUML preview, and every script below as a task are all pre-wired. See [`.vscode/README.md`](.vscode/README.md).
+
 ## Adding a chapter
 
 Never hand-create a chapter file — use the script so numbering and the section template stay consistent:

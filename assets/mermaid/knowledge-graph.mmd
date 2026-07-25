@@ -1,0 +1,13 @@
+graph TD
+    A[Data Sources] --> B[Knowledge Graph Store]
+    B --> C[Nodes (Entities)]
+    B --> D[Edges (Relationships)]
+    D --> E[Node Types]
+    E --> F[Properties]
+    F --> G[Attributes]
+    B --> H[Query Interface]
+    H --> I[SPARQL/GraphQL]
+    I --> J[Results]
+    B --> K[Reasoning Engine]
+    K --> L[Inference]
+    L --> M[Knowledge Expansion]

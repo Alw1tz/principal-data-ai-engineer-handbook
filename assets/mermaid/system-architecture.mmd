@@ -1,0 +1,10 @@
+graph TD
+    A[External Client] --> B[System Boundary]
+    B --> C[API Gateway]
+    B --> D[Service Layer]
+    D --> E[Business Logic]
+    D --> F[Data Access Layer]
+    F --> G[Database]
+    F --> H[Message Queue]
+    F --> I[Cache]
+    B --> J[Monitoring/Logging]

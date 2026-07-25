@@ -2,6 +2,29 @@
 
 Notable changes to the handbook's structure/tooling (not content — chapters have no content yet). Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 2026-07-25 — VS Code workspace
+
+A complete, opinionated editor setup — open the repo root in VS Code and everything below is already wired up, no manual configuration.
+
+### Added
+
+- **`.vscode/extensions.json`** — recommended extensions: markdownlint, Prettier, Code Spell Checker, Mermaid + GitHub-style preview, Markdown All in One + emoji, PlantUML, Ruff (Python), YAML, GitHub Actions, GitLens. `unwantedRecommendations` explicitly excludes Markdown Preview Enhanced (see rationale below).
+- **`.vscode/tasks.json`** — every `scripts/*.py` as a task with input prompts (topic slug, title, tags, ...) instead of typing full CLI commands. Default build task (Cmd/Ctrl+Shift+B) runs `scripts/build.py` — the same command CI runs.
+- **`.vscode/launch.json`** — debug configs for the scripts (breakpoints, step-through), including one bound to `${relativeFile}` so debugging `mark_complete.py` against whatever chapter is open needs no setup.
+- **`.vscode/handbook.code-snippets`** — Mermaid flowchart/sequence, PlantUML component diagram (with an inline reminder that GitHub won't render it inline), the metadata/breadcrumb/related marker blocks, GitHub-flavored collapsible `<details>` and `[!NOTE]`/`[!WARNING]`/`[!TIP]` callouts, a table skeleton.
+- **`.markdownlint.jsonc`** — GitHub-style markdown linting, tuned to this repo's actual conventions rather than generic defaults: `MD025`/`MD041` disabled (every template section is deliberately its own H1, and pages open with an HTML-comment metadata block, not the title), `MD033` allows exactly the HTML this repo uses (`details`/`summary`/`div`/`br`/`img`), `MD013` (line length) and `MD034` (bare URLs) off to match the "don't wrap, paste references quickly" writing style already in place.
+- **`cspell.json`** — spell-check word list covering every topic slug plus AWS/Kubernetes/AI-engineering vocabulary and this repo's own tooling names, so writing about real infrastructure doesn't mean fighting red squiggles on every second word.
+- **`.prettierrc.json`** / **`.prettierignore`** — Prettier handles `.json`/`.yaml`; Markdown is explicitly excluded (see below).
+- **`assets/plantuml/`** — source location for `.puml` files, documented in `assets/README.md` alongside the existing `mermaid/` convention.
+- **`.vscode/README.md`** — explains all of the above, including the two decisions worth understanding before fighting them (next section).
+
+### Design decisions worth recording
+
+- **Prettier never touches Markdown.** Every `.md` page in this repo is partly owned by `scripts/build.py` (TOC/breadcrumb/tags/cross-reference/progress/stats blocks between HTML-comment markers), and CI fails if `build.py`'s output doesn't exactly match what's committed. Auto-reformatting Markdown on save risks Prettier's output disagreeing with what the Python scripts emit — turning an editor convenience into a source of false CI failures. `.prettierignore` excludes `*.md`, `settings.json` disables `editor.formatOnSave` for the `markdown` language specifically; Markdown style is enforced by `markdownlint` instead, which reads structure without rewriting files.
+- **`markdown.validate.enabled` (VS Code's built-in link checker) is turned on explicitly.** It's a free, zero-extension complement to `scripts/check_links.py` — the difference being it flags a broken relative link live, in the editor, while `check_links.py` only catches it when you run `build.py` or push. Same guarantee, faster feedback loop.
+- **Markdown Preview Enhanced was considered and rejected** in favor of `bierner.markdown-preview-github-styles` + `bierner.markdown-mermaid`. MPE has its own preview pane with its own styling; the Bierner extensions instead make VS Code's *built-in* preview (Ctrl+Shift+V) match GitHub's actual rendering — since this repo is explicitly designed to be read on GitHub, what you see while writing should be what a reader sees.
+- **PlantUML uses the public PlantUML server**, not a local Java/Graphviz install — zero setup cost to preview a diagram. The real tradeoff, documented in both `.vscode/README.md` and `assets/README.md`: unlike Mermaid, GitHub does not render PlantUML inline in Markdown, so finished diagrams need exporting to PNG/SVG.
+
 ## 2026-07-24 — Production-ready polish
 
 Everything below is backed by something real running, not decoration — every badge, diagram, and template change ties to an actual file/workflow that exists in this commit.

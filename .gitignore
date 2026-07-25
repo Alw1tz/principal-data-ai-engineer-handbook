@@ -5,5 +5,8 @@ __pycache__/
 # OS
 .DS_Store
 
-# Editor
-.vscode/
+# .vscode/ is intentionally NOT ignored — it's a shared, committed workspace
+# (see .vscode/README.md), not personal editor state. If you keep local-only
+# overrides, use .vscode/settings.local.json (not part of this repo's
+# convention today, but the natural place if you ever need one) instead of
+# re-adding a blanket ignore here.

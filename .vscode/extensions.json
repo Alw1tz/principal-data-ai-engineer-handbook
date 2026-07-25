@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "davidanson.vscode-markdownlint",
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "bierner.markdown-mermaid",
+    "bierner.markdown-preview-github-styles",
+    "bierner.markdown-emoji",
+    "yzhang.markdown-all-in-one",
+    "jebbs.plantuml",
+    "charliermarsh.ruff",
+    "ms-python.python",
+    "redhat.vscode-yaml",
+    "github.vscode-github-actions",
+    "eamodio.gitlens"
+  ],
+  "unwantedRecommendations": [
+    "shd101wyy.markdown-preview-enhanced"
+  ]
+}

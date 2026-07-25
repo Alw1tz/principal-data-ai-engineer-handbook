@@ -1,0 +1,11 @@
+graph TD
+    A[User Query] --> B[Embedding Model]
+    B --> C[Vector Database]
+    C --> D[Retrieval]
+    D --> E[Contextual Information]
+    E --> F[Language Model]
+    F --> G[Response Generation]
+    G --> H[Output]
+    C --> I[Similarity Search]
+    I --> J[Re-ranking]
+    J --> D

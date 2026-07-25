@@ -1,0 +1,33 @@
+{
+  "default": true,
+
+  // Every section in templates/chapter-template.md (and lab/project/
+  // interview templates) is an H1 ("# Overview", "# Concepts", ...) by
+  // deliberate design — one flat, scannable level, not H1 + nested H2s.
+  // That means every content page has many H1s. Both rules assume the
+  // opposite (exactly one H1, and it's the first line) and would flag
+  // every single page in topics/labs/projects otherwise.
+  "MD025": false,
+  "MD041": false,
+
+  // This repo relies on HTML deliberately: <!-- tags/status/updated/
+  // TOC/BREADCRUMB/RELATED/STATS/PROGRESS/LOG --> comment markers drive
+  // scripts/build.py, and README.md uses <div align="center">/<details>
+  // for the badge block and collapsible TOC.
+  "MD033": {
+    "allowed_elements": ["details", "summary", "div", "br", "img"]
+  },
+
+  // No hard line-length limit — this repo's prose wrapping is "don't
+  // wrap" (see .prettierrc.json's proseWrap: preserve), not a fixed column.
+  "MD013": false,
+
+  // References sections often want a bare URL pasted in quickly rather
+  // than a formatted [text](url) — friction reduction matters more here
+  // than link-formatting purity for a personal knowledge base.
+  "MD034": false,
+
+  // Only flag duplicate headings within the same section, not across the
+  // whole file — every content page repeats a similar shape by design.
+  "MD024": { "siblings_only": true }
+}

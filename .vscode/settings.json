@@ -1,0 +1,84 @@
+{
+  // ---- General ----
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.mmd": "mermaid",
+    "*.puml": "plantuml",
+    "*.iuml": "plantuml"
+  },
+
+  // ---- Markdown: this is a docs repo, so treat it like source code ----
+  // Live, in-editor broken-link detection (built into VS Code, no extension
+  // needed) — complements scripts/check_links.py, which only catches things
+  // at build/CI time. This catches them as you type.
+  "markdown.validate.enabled": true,
+  "markdown.validate.fragmentLinks.enabled": "warning",
+  "markdown.validate.fileLinks.enabled": "error",
+  "markdown.validate.referenceLinks.enabled": "warning",
+
+  // Make the built-in preview (Ctrl+Shift+V) look like GitHub actually
+  // renders it — this repo is explicitly designed to be read on GitHub.
+  "markdown.styles": [],
+  "markdown.preview.typographer": true,
+
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // Deliberately NOT format-on-save: every .md file in this repo mixes
+    // hand-written prose with blocks scripts/build.py generates and owns
+    // (TOC, breadcrumbs, tags, progress, stats). Auto-reformatting on save
+    // risks producing a diff that fights the one build.py/CI produces —
+    // see .vscode/README.md. Format manually (Shift+Alt+F) when you want it.
+    "editor.formatOnSave": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": { "comments": "off", "strings": "off", "other": "off" }
+  },
+
+  // ---- Python (scripts/) ----
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "python.analysis.extraPaths": ["scripts"],
+
+  // ---- JSON / YAML (safe to auto-format — never touched by build.py) ----
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode", "editor.formatOnSave": true },
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode", "editor.formatOnSave": true },
+  "[yaml]": { "editor.defaultFormatter": "esbenp.prettier-vscode", "editor.formatOnSave": true },
+
+  // ---- markdownlint ----
+  // Rule overrides live in .markdownlint.jsonc (this repo deliberately uses
+  // one H1 per section and HTML-comment metadata, both of which trip the
+  // default ruleset — see that file for why each override exists).
+  "markdownlint.config": {},
+
+  // ---- Spell checking (cSpell) ----
+  // Word list lives in cspell.json at the repo root.
+  "cSpell.enabled": true,
+  "cSpell.checkOnlyEnabledFileTypes": false,
+
+  // ---- Mermaid ----
+  // Rendered natively by bierner.markdown-mermaid inside the built-in
+  // preview — no extra settings needed, no local install required.
+
+  // ---- PlantUML ----
+  // Uses the public PlantUML server by default — zero local install
+  // (no Java/Graphviz needed) to preview a diagram. Switch to "Local" +
+  // set plantuml.jar if you want fully offline rendering.
+  "plantuml.render": "PlantUMLServer",
+  "plantuml.server": "https://www.plantuml.com/plantuml",
+  "plantuml.exportOutDir": "assets/diagrams",
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/__pycache__": true
+  },
+  "files.exclude": {
+    "**/__pycache__": true
+  }
+}

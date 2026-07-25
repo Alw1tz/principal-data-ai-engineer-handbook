@@ -1,0 +1,11 @@
+graph TD
+    A[Client] --> B[Load Balancer]
+    B --> C[EC2 Instances]
+    C --> D[S3 Bucket]
+    C --> E[RDS Database]
+    C --> F[Redshift Cluster]
+    C --> G[ElastiCache]
+    C --> H[Kinesis Stream]
+    C --> I[Lambda Function]
+    I --> J[SNS Topic]
+    J --> K[EC2 Instance]

@@ -1,0 +1,10 @@
+graph TD
+    A[Data Source] --> B[Cloud Storage (S3)]
+    B --> C[Snowflake Stage]
+    C --> D[Snowflake Warehouse]
+    D --> E[Data Processing]
+    D --> F[Query Engine]
+    F --> G[Result Cache]
+    G --> H[User Interface]
+    D --> I[Data Sharing]
+    I --> J[External Consumers]

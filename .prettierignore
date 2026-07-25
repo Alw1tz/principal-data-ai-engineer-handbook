@@ -1,0 +1,10 @@
+# Every .md file in this repo is at least partly owned by scripts/build.py
+# (TOC / breadcrumbs / tags / cross-references / progress / stats markers).
+# Prettier reformatting them — even innocuously — risks producing a diff
+# that disagrees with what build.py regenerates, which is exactly what CI
+# checks for. Markdown formatting in this repo is enforced by the Python
+# scripts + markdownlint, not Prettier. See .vscode/README.md.
+*.md
+
+.git/
+__pycache__/

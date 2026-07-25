@@ -1,0 +1,11 @@
+graph TD
+    A[Client] --> B[Load Balancer]
+    B --> C[Service Nodes]
+    C --> D[Database Cluster]
+    D --> E[Replica Nodes]
+    C --> F[Cache Layer]
+    F --> G[Redis/Memcached]
+    C --> H[Message Queue]
+    H --> I[Kafka/RabbitMQ]
+    C --> J[Monitoring]
+    J --> K[Prometheus/Grafana]
