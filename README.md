@@ -25,9 +25,9 @@ labs/        Standalone, runnable hands-on exercises (separate from the
 templates/   The canonical templates (chapter, lab, project, interview
              question) that everything else is generated from.
 
-scripts/     Automation: scaffold new chapters/labs/interview pages,
-             regenerate this README's table of contents, check for broken
-             relative links.
+scripts/     Automation: scaffold new chapters/labs/projects/interview pages,
+             regenerate every directory's table of contents, check for
+             broken relative links. See scripts/README.md for the full list.
 
 assets/      Images, diagrams, architecture exports, mermaid sources, PDFs.
 ```
@@ -42,6 +42,7 @@ assets/      Images, diagrams, architecture exports, mermaid sources, PDFs.
 - [RESOURCES.md](RESOURCES.md) — curated external links
 - [PROJECTS.md](PROJECTS.md) — status tracker for everything in `projects/`
 - [INTERVIEW_TRACKER.md](INTERVIEW_TRACKER.md) — interview prep tracker (incl. Salesforce)
+- [CHANGELOG.md](CHANGELOG.md) — notable structural/tooling changes
 - [CONTRIBUTING.md](CONTRIBUTING.md) — conventions for adding new content
 
 ## Adding content
@@ -55,6 +56,9 @@ python3 scripts/new_lab.py snowflake time-travel-recovery --title "Time Travel R
 
 # new interview-question page
 python3 scripts/new_interview_page.py design-a-rate-limiter --title "Design a Rate Limiter"
+
+# new project placeholder
+python3 scripts/new_project.py real-time-feature-store --title "Real-Time Feature Store"
 
 # after adding/removing anything under topics/, projects/, prompts/, labs/:
 python3 scripts/generate_toc.py
@@ -90,7 +94,7 @@ All scripts are stdlib-only Python — no venv or dependencies needed.
   - [Python](topics/python/README.md)
   - [RAG](topics/rag/README.md)
   - [Research Papers](topics/research-papers/README.md)
-  - [Salesforce Interview Preparation](topics/salesforce-interview-prep/README.md)
+  - [Salesforce Interview Preparation](topics/salesforce-interview-preparation/README.md)
   - [Security](topics/security/README.md)
   - [Snowflake](topics/snowflake/README.md)
   - [Spark](topics/spark/README.md)

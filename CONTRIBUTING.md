@@ -26,6 +26,22 @@ python3 scripts/new_lab.py <lab-dir> <lab-slug> --title "Lab Title"
 
 A lab should be completable end-to-end by following its **Steps** section alone — no missing context assumed from the parent chapter.
 
+## Adding a project
+
+```bash
+python3 scripts/new_project.py <slug> --title "Project Title"
+```
+
+Then add a status row for it in [`PROJECTS.md`](PROJECTS.md) — that file can't be auto-generated since status is a judgment call, not a filesystem fact.
+
+## Adding an interview question
+
+```bash
+python3 scripts/new_interview_page.py <slug> --title "Question Title"
+```
+
+Goes into `topics/mock-interviews/questions/`, not directly into `topics/mock-interviews/` — that directory's top level is for narrative chapters (chapter-template) only, so the two page types never collide in the same numbered namespace.
+
 ## Before committing
 
 ```bash

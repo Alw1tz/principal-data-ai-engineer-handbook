@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
-"""Create a new interview-question page under topics/mock-interviews/, from
-templates/interview-question-template.md.
+"""Create a new interview-question page under topics/mock-interviews/questions/,
+from templates/interview-question-template.md.
+
+Kept in its own `questions/` subdirectory, separate from the narrative
+chapters that live directly under topics/mock-interviews/ — two different
+page shapes (chapter-template vs. interview-question-template) should never
+share a flat numbered namespace.
 
 Usage:
     python3 scripts/new_interview_page.py <slug> [--title "Question Title"]
@@ -19,7 +24,7 @@ def main() -> None:
     parser.add_argument("--title", help="Page title (defaults to a title-cased slug)")
     args = parser.parse_args()
 
-    target_dir = ROOT / "topics" / "mock-interviews"
+    target_dir = ROOT / "topics" / "mock-interviews" / "questions"
     title = args.title or args.slug.replace("-", " ").title()
     target = write_new_page(
         target_dir, args.slug, ROOT / "templates" / "interview-question-template.md", title

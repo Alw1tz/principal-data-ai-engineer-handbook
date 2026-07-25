@@ -4,7 +4,9 @@ Part of the [Principal Data & AI Engineer Handbook](../../README.md).
 
 ## Chapters
 
-- [01 - Introduction](01-introduction.md)
+<!-- TOC:START -->
+- [Airflow - Introduction](01-introduction.md)
+<!-- TOC:END -->
 
 Add new chapters with:
 

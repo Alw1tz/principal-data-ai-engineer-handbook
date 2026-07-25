@@ -8,7 +8,7 @@ Tracks actual interview loops (not prep — that's `topics/mock-interviews/`).
 
 ## Salesforce-specific prep
 
-See [topics/salesforce-interview-prep/](topics/salesforce-interview-prep/README.md) for company-specific notes (interview format, focus areas, past questions).
+See [topics/salesforce-interview-preparation/](topics/salesforce-interview-preparation/README.md) for company-specific notes (interview format, focus areas, past questions).
 
 ## Post-mortem template (copy per interview)
 
