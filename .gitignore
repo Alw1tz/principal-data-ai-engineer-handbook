@@ -2,6 +2,13 @@
 __pycache__/
 *.pyc
 
+# uv-managed lab/demo projects (labs/*/*/pyproject.toml) each get their own
+# .venv/ and local data files — never committed, regenerated with `uv sync`.
+.venv/
+.env
+*.duckdb
+
+
 # OS
 .DS_Store
 

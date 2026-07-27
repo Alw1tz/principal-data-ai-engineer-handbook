@@ -99,5 +99,5 @@ _TODO_
 # Related
 
 <!-- RELATED:START -->
-_No related pages yet — add shared tags to connect this page to others._
+- [MCP + LangGraph Scout Agent](../../labs/ai/01-mcp-langgraph-scout-agent.md) _(mcp)_
 <!-- RELATED:END -->

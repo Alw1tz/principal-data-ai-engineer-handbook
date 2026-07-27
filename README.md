@@ -11,7 +11,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
 
 <!-- STATS:START -->
-**29** topics · **38** pages · **0/38** complete (0%) · **8** lab categories · **9** projects · **0** prompts · **38** tags
+**29** topics · **40** pages · **2/40** complete (5%) · **8** lab categories · **9** projects · **1** prompts · **39** tags
 <!-- STATS:END -->
 
 </div>

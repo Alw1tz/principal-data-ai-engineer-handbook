@@ -9,6 +9,11 @@ New pages are auto-tagged with their parent topic/lab slug; add more via `--tags
 
 - [Agentic Data Platform](projects/agentic-data-platform/README.md)
 
+### ai (2)
+
+- [Concurrent Fan-Out/Join Stress Test Agents](labs/ai/02-concurrent-stress-test-agents.md)
+- [MCP + LangGraph Scout Agent](labs/ai/01-mcp-langgraph-scout-agent.md)
+
 ### ai-engineering (1)
 
 - [AI Engineering - Introduction](topics/ai-engineering/01-introduction.md)
@@ -73,9 +78,11 @@ New pages are auto-tagged with their parent topic/lab slug; add more via `--tags
 
 - [Lakehouse - Introduction](topics/lakehouse/01-introduction.md)
 
-### langgraph (1)
+### langgraph (3)
 
+- [Concurrent Fan-Out/Join Stress Test Agents](labs/ai/02-concurrent-stress-test-agents.md)
 - [LangGraph - Introduction](topics/langgraph/01-introduction.md)
+- [MCP + LangGraph Scout Agent](labs/ai/01-mcp-langgraph-scout-agent.md)
 
 ### leadership (1)
 
@@ -85,8 +92,9 @@ New pages are auto-tagged with their parent topic/lab slug; add more via `--tags
 
 - [LLMs - Introduction](topics/llms/01-introduction.md)
 
-### mcp (1)
+### mcp (2)
 
+- [MCP + LangGraph Scout Agent](labs/ai/01-mcp-langgraph-scout-agent.md)
 - [MCP - Introduction](topics/mcp/01-introduction.md)
 
 ### mcp-server (1)
@@ -121,8 +129,10 @@ New pages are auto-tagged with their parent topic/lab slug; add more via `--tags
 
 - [Research Papers - Introduction](topics/research-papers/01-introduction.md)
 
-### salesforce-interview-preparation (1)
+### salesforce-interview-preparation (3)
 
+- [Concurrent Fan-Out/Join Stress Test Agents](labs/ai/02-concurrent-stress-test-agents.md)
+- [MCP + LangGraph Scout Agent](labs/ai/01-mcp-langgraph-scout-agent.md)
 - [Salesforce Interview Preparation - Introduction](topics/salesforce-interview-preparation/01-introduction.md)
 
 ### security (1)

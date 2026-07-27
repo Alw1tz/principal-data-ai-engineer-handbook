@@ -43,16 +43,120 @@ In the context of a Lead Agentic Data Systems Engineer role, storytelling is cru
 **Action**: You facilitated communication and translated requirements into technical solutions.
 **Result**: Demonstrate improved collaboration, reduced conflicts, or successful project delivery.
 
-## Sample Stories
+## My Actual Stories (real, from CV + hands-on prep — use these, not placeholders)
 
-### Story 1: Building Autonomous Data Agents
-*"In my previous role at [Company], I was tasked with building an autonomous data agent system to monitor our data pipelines. The challenge was that we had dozens of daily jobs that required manual intervention when issues occurred. I designed a solution using LangGraph to create agents that could automatically detect anomalies, generate remediation steps, and even execute fixes in production. Using MCP servers, I provided secure access to our Snowflake data sources for the agents. The result was a 75% reduction in manual intervention time and improved pipeline reliability. The system has been running successfully for over 18 months with minimal supervision."*
+> The three "Sample Stories" that used to be here were generic
+> AI-generated placeholders (`[Company]`, invented percentages, "running
+> for 18 months") — **do not use them**. If a follow-up question probed
+> any specific number, there'd be nothing real behind it. Below are real
+> stories built from the actual CV and from labs/ai/agentic-demo/,
+> mapped to which `principal_behavioral.md` questions each one answers.
+> Per the "3-5 key stories" advice above, these are the reusable core —
+> practice these, not a separate answer for all 18 questions.
 
-### Story 2: Scaling Data Engineering Systems
-*"When we were tasked with scaling our data processing capabilities to handle 3x more data volume, I led the architecture redesign using Spark and Snowflake. I implemented a distributed architecture that could automatically scale based on workload demands. By leveraging Kubernetes for orchestration and implementing proper caching strategies, we reduced query times by 60% while maintaining 99.9% uptime. The system now supports over 100 concurrent agents working simultaneously."*
+### Story 1: The DAG factory (Rappi, Aug 2024–present)
 
-### Story 3: AI Integration with Existing Infrastructure
-*"We needed to integrate AI capabilities into our existing data workflow without disrupting current operations. I designed a solution that used LangChain for agent orchestration and MCP servers to securely connect the agents to our Salesforce, Snowflake, and internal data catalogs. The approach allowed us to gradually introduce AI capabilities while maintaining full backward compatibility. Within 6 months, we saw a 40% increase in productivity across our analytics team."*
+**S**: Onboarding a new interface at Rappi meant writing a bespoke
+Airflow DAG each time — 30+ interfaces, each its own inconsistent,
+error-prone codebase.
+**T**: Cut that duplication without losing per-interface flexibility or
+governance.
+**A**: Designed a metadata-driven ingestion platform — Airflow + Snowflake
++ S3 — where a JSON template describes an interface and a dynamic DAG
+factory generates the DAG and the SQL from it, instead of hand-writing
+either.
+**R**: ~80% reduction in development effort per new interface; 30+
+interfaces now onboard through configuration, not new code.
+
+_Answers_: Q4 (creative technical problem), Q7 (build from the ground
+up), Q10 (scaling with complexity), Q1 (defining a technical vision).
+
+### Story 2: Buró de Crédito pipeline redesign (Rappi)
+
+**S**: Core credit-bureau pipelines handling sensitive financial data
+were slow and expensive to run.
+**T**: Cut cost and runtime substantially without compromising
+correctness or security on regulated financial data.
+**A**: Redesigned and optimized the pipelines — [fill in your actual
+levers here before the interview: warehouse sizing, partitioning,
+incremental vs. full-refresh, query rewrites, scheduling changes —
+whatever you actually changed] — while keeping AWS security/access
+patterns standardized for sensitive data.
+**R**: 86% cost reduction, 90% execution-time reduction.
+
+_Answers_: Q5 (found + fixed a real inefficiency), Q8 (technical
+decision-making), Q10 (scaling/reliability). **This is your strongest
+quantified story — know the actual technical levers cold, since "86%/
+90%" numbers this large will get a follow-up "how, exactly?"**
+
+### Story 3: Banorte platform separation (Rappi)
+
+**S**: Banorte was separating from a shared platform; strategic pipelines
+had to move with the business still running.
+**T**: Migrate critical pipelines with minimal disruption, under a
+hard business deadline, coordinating across teams you didn't manage.
+**A**: Led the migration — [fill in: how you sequenced cutover, how you
+validated parity before switching traffic, who you coordinated with].
+**R**: Business continuity maintained through the separation.
+
+_Answers_: Q3 (lead without formal authority), Q16 (cross-functional
+collaboration), Q11 (competing priorities under deadline pressure).
+
+### Story 4: IBM → AWS platform migration (El Palacio de Hierro)
+
+**S**: Legacy platform on IBM, inconsistent schemas across datasets,
+scalability ceiling.
+**T**: Migrate to AWS and modernize schema handling without breaking
+downstream consumers.
+**A**: Worked with the Data Architect on lineage/governance standards,
+built Python/Scala pipelines across staging/raw/semantic layers,
+migrated legacy datasets to Apache Iceberg for schema evolution,
+standardized audit/control/monitoring fields enterprise-wide, presented
+the new platform to engineering and business stakeholders.
+**R**: Improved scalability and reliability; consistent, governed data
+models across the enterprise.
+
+_Answers_: Q12 (integrating multiple systems), Q17 (explaining technical
+work to non-technical stakeholders — literally what the demos were),
+Q13 (adopting a new technology — Iceberg), Q10 (scaling).
+
+### Story 5: This weekend's MCP + LangGraph build (honest framing matters)
+
+**S**: This CV has zero hands-on evidence of MCP or LangGraph — every
+other line item in the JD's "AI Orchestration" bullet was new to you
+going into this interview.
+**T**: Actually understand agentic verification/self-correction patterns
+before claiming fluency in them, not just read about them.
+**A**: Built a real MCP server (DuckDB-backed, SELECT-only enforced) and
+a 3-agent LangGraph pipeline (scout → remediate → review) that mirrors
+this exact JD's 08:00 scenario, running against a local model so it cost
+nothing. It genuinely looped twice on a real self-correction cycle and
+escalated to a human correctly. Then red-teamed it and found a real gap:
+the SQL safety check was bypassable via a stacked statement, saved only
+by an unrelated read-only DB connection — and confirmed that a prompt
+injection against the remediation agent still couldn't reach the
+database, because the boundary lives in the tool, not the model.
+**R**: Concrete, defensible understanding of agentic architecture and
+agent security boundaries, plus one specific finding that shows real
+analytical judgment rather than memorized definitions.
+
+_Answers_: Q6 (autonomous systems with reliability), Q13 (learning new
+tech fast), Q4 (creative problem-solving), Q8 (a real decision: fixing
+the qwen3 context-window bug based on evidence, not guessing).
+**Be upfront that this is prep work you did specifically for this
+interview, not a past production system** — that honesty is itself a
+strong signal, and claiming otherwise is a real risk if probed.
+
+### Gaps — you don't have a ready story for these yet, don't fabricate one
+
+- **Q9 (mentoring less experienced engineers)** — nothing in the CV
+  evidences this explicitly. If you have a real example, add it here
+  before Tuesday. If not, it's fine to say so honestly and pivot to how
+  you'd approach it.
+- **Q18 (resolving a team conflict)** — same gap. Think concretely about
+  whether the Banorte migration or the IBM→AWS migration had a real
+  disagreement in it (scope, priority, technical approach) you can speak
+  to truthfully.
 
 ## Tips for Effective Storytelling
 

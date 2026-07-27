@@ -99,5 +99,6 @@ _TODO_
 # Related
 
 <!-- RELATED:START -->
-_No related pages yet — add shared tags to connect this page to others._
+- [Concurrent Fan-Out/Join Stress Test Agents](../../labs/ai/02-concurrent-stress-test-agents.md) _(salesforce-interview-preparation)_
+- [MCP + LangGraph Scout Agent](../../labs/ai/01-mcp-langgraph-scout-agent.md) _(salesforce-interview-preparation)_
 <!-- RELATED:END -->
